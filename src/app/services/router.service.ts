@@ -29,14 +29,15 @@ export class RouterService {
   }
 
   registerRoute(route: Route) {
-    if (this.routeIsRegistered(route.path)) return;
+    if (this.routeIsRegistered(route.path)) {
+      this.unRegisterRoute(route.path);
+    }
 
     this.router.config.push(route);
     this.updateRouteConfig(this.router.config);
   }
 
   unRegisterRoute(path: string) {
-    console.log("Unregister", path);
     this.updateRouteConfig(
       this.router.config.filter(route => route.path !== path)
     );

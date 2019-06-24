@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ModuleService } from "./services/module.service";
 import { RouterService } from "./services/router.service";
+import { Router, NavigationEnd } from "@angular/router";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: "app-root",
@@ -14,15 +16,5 @@ export class AppComponent implements OnInit {
     private routerService: RouterService
   ) {}
 
-  ngOnInit() {
-    this.registerRoute();
-  }
-
-  private registerRoute() {
-    const moduleUrl = "/nadall-catalog-app.umd.min.js";
-    const moduleName = "NadallCatalogAppModule";
-    this.moduleService.loadModule(moduleUrl, moduleName).subscribe(exports => {
-      this.routerService.createAndRegisterRoute("catalog", moduleName, exports);
-    });
-  }
+  ngOnInit() {}
 }
